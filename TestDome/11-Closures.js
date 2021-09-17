@@ -1,0 +1,30 @@
+// TODO: TestDome - Closures
+// https://www.testdome.com/questions/32145
+
+
+function registerHandlers() {
+  // Fix the bugs
+  // 클로져를 통해 index를 alert에 전달해주는 문제
+ 
+  let as = document.getElementsByTagName('a');
+
+  for (let i = 0; i < as.length; i++) {
+    as[i].onclick = function(i) {
+      
+      return function () {
+        alert(i);
+      }
+      
+      return false;
+    }
+  }
+}
+
+/* HTML code for testing purposes (do not submit uncommented):
+<body>
+  In my life, I used the following web search engines:<br/>
+  <a href="//www.yahoo.com">Yahoo!</a><br/>
+  <a href="//www.altavista.com">AltaVista</a><br/>
+  <a href="//www.google.com">Google</a><br/>
+</body>
+*/
