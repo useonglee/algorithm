@@ -17,23 +17,26 @@ function solution(table, languages, preference) {
   for (let i = 0; i < table.length; i++) {
       table[i] = table[i].split(' ');
       let lists = table[i].slice(1);
+      let curTotal = 0;
       
       for (let j = 0; j < lists.length; j++) {
-          let curTotal = 0;
           for (let k = 0; k < languages.length; k++) {
               if (lists[j] === languages[k]) {
                   curTotal += (lists.length - j) * preference[k];
-                  console.log(lists[j], languages[k])
-                  hash[table[i][0]] = curTotal;
               }
+              
+              hash[table[i][0]] = curTotal;
           }
       }
-      
-      hash[table[i][0]] = table[i].slice(1);
   }
-  console.log(hash);
+  // console.log(hash);
   
-  let answer = Object.values(hash).sort();
+  let answer = [];
   
-  return answer[0];
+  for (let el in hash) {
+      answer.push([el, hash[el]]);
+  }
+  
+  answer.sort((a, b) => b[1] - a[1] - (a[0] < b[0]));    
+  return answer[0][0];
 }
